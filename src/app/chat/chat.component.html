@@ -1,0 +1,93 @@
+<div class="chat-container">
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="header-content">
+      <div class="ai-info">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-header-text">
+          <h2 class="ai-name">{{ aiName }}</h2>
+          <p class="ai-status">Online & Ready to Help</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Messages Container -->
+  <div class="messages-container" #messagesContainer>
+    <div class="messages" *ngIf="messages.length > 0">
+      <div *ngFor="let msg of messages; let last = last" class="message-wrapper" [ngClass]="'sender-' + msg.sender" [class.last-message]="last">
+        <!-- AI Message -->
+        <ng-container *ngIf="msg.sender === 'ai'">
+          <div class="message ai-message">
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">
+              <div class="message-bubble ai-bubble">
+                {{ msg.message }}
+              </div>
+              <div class="message-time">{{ msg.timestamp | date: 'short' }}</div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- User Message -->
+        <ng-container *ngIf="msg.sender === 'user'">
+          <div class="message user-message">
+            <div class="message-content">
+              <div class="message-bubble user-bubble">
+                {{ msg.message }}
+              </div>
+              <div class="message-time">{{ msg.timestamp | date: 'short' }}</div>
+            </div>
+            <div class="message-avatar">👤</div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div class="message-wrapper sender-ai" *ngIf="isLoading">
+        <div class="message ai-message">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            <div class="message-bubble ai-bubble typing-indicator">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="messages.length === 0">
+      <div class="empty-icon">💬</div>
+      <h3 class="empty-title">Start a Conversation</h3>
+      <p class="empty-message">Ask Sarathi anything about your documents, data, or get intelligent insights powered by RAG technology.</p>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="input-area">
+    <div class="input-wrapper">
+      <textarea
+        class="message-input"
+        [(ngModel)]="userMessage"
+        placeholder="Type your question here..."
+        (keypress)="handleKeypress($event)"
+        [disabled]="isLoading"
+        rows="1">
+      </textarea>
+      <button 
+        class="send-btn" 
+        (click)="sendMessage()" 
+        [disabled]="!userMessage.trim() || isLoading"
+        [class.loading]="isLoading"
+        title="Send message (Ctrl+Enter)">
+        <span class="icon" *ngIf="!isLoading">➤</span>
+        <span class="icon" *ngIf="isLoading">
+          <span class="spinner"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>

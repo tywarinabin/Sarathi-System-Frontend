@@ -1,0 +1,227 @@
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-logo">
+      <span class="logo-icon">S</span>
+      <span class="logo-text">Sarathi</span>
+    </div>
+    <ul class="navbar-menu" [class.active]="menuOpen">
+      <li class="navbar-item"><a href="#home" class="navbar-link" (click)="menuOpen = false">Home</a></li>
+      <li class="navbar-item"><a href="#features" class="navbar-link" (click)="menuOpen = false">Features</a></li>
+      <li class="navbar-item"><a href="#blobs" class="navbar-link" (click)="menuOpen = false">Blobs</a></li>
+      <li class="navbar-item"><a href="#reviews" class="navbar-link" (click)="menuOpen = false">Reviews</a></li>
+      <li class="navbar-item"><a href="#contact" class="navbar-link" (click)="menuOpen = false">Contact</a></li>
+      <li class="navbar-item"><button (click)="navigateToLogin()" class="navbar-link navbar-login">Login</button></li>
+    </ul>
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">Sarathi: Your RAG-Based Intelligence Platform</h1>
+    <p class="hero-subtitle">Harness the power of intelligent information retrieval and generation</p>
+    <div class="hero-buttons">
+      <button (click)="navigateToLogin()" class="btn btn-primary">Get Started</button>
+      <a href="#features" class="btn btn-secondary">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="floating-blob blob-1"></div>
+    <div class="floating-blob blob-2"></div>
+    <div class="floating-blob blob-3"></div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+  <h2 class="features-title">Why Choose Sarathi?</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3 class="feature-name">Lightning Fast</h3>
+      <p class="feature-description">Rapid retrieval and response generation powered by advanced algorithms</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3 class="feature-name">Secure</h3>
+      <p class="feature-description">Enterprise-grade security with encrypted data transmission and storage</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3 class="feature-name">Intelligent</h3>
+      <p class="feature-description">AI-powered understanding of context and user intent for better results</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3 class="feature-name">Analytics</h3>
+      <p class="feature-description">Comprehensive analytics dashboard to track performance and insights</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3 class="feature-name">Integration</h3>
+      <p class="feature-description">Seamless integration with your existing tools and workflows</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👥</div>
+      <h3 class="feature-name">Multi-User</h3>
+      <p class="feature-description">Collaborate with your team in real-time with granular permissions</p>
+    </div>
+  </div>
+</section>
+
+<!-- Chat Section -->
+<section id="chat" class="chat-section">
+  <div class="chat-container">
+    <div class="chat-demo">
+      <h3 class="chat-title">Interactive Demo</h3>
+      <div class="chat-messages">
+        <div class="message user-message">
+          <p>What are the benefits of RAG systems?</p>
+        </div>
+        <div class="message assistant-message">
+          <p>RAG (Retrieval-Augmented Generation) systems combine information retrieval with generative AI to provide accurate, contextually relevant responses. Benefits include improved accuracy, reduced hallucinations, and access to up-to-date information.</p>
+        </div>
+        <div class="message user-message">
+          <p>How does Sarathi implement RAG?</p>
+        </div>
+        <div class="message assistant-message">
+          <p>Sarathi uses advanced vector embeddings and semantic search to retrieve relevant documents, which are then fed to our language model for generation. This ensures responses are both intelligent and grounded in your data.</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-features">
+      <h3 class="features-list-title">Key Features</h3>
+      <ul class="features-list">
+        <li>✓ Real-time conversation support</li>
+        <li>✓ Context-aware responses</li>
+        <li>✓ Multi-language support</li>
+        <li>✓ Custom knowledge bases</li>
+        <li>✓ Chat history management</li>
+        <li>✓ Export conversations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Blobs/Knowledge Management Section -->
+<section id="blobs" class="blobs-section">
+  <h2 class="blobs-title">Knowledge Management Hub</h2>
+  <div class="blobs-grid">
+    <div class="blob-card">
+      <div class="blob-visual">🎓</div>
+      <h3 class="blob-name">Knowledge Hub</h3>
+      <p class="blob-description">Centralized repository for all your documents and data sources</p>
+    </div>
+    <div class="blob-card">
+      <div class="blob-visual">🔍</div>
+      <h3 class="blob-name">Smart Indexing</h3>
+      <p class="blob-description">Intelligent document indexing with semantic understanding</p>
+    </div>
+    <div class="blob-card">
+      <div class="blob-visual">⚙️</div>
+      <h3 class="blob-name">Real-time Updates</h3>
+      <p class="blob-description">Dynamic knowledge base that stays current with your information</p>
+    </div>
+    <div class="blob-card">
+      <div class="blob-visual">📈</div>
+      <h3 class="blob-name">Analytics</h3>
+      <p class="blob-description">Detailed insights into knowledge base usage and effectiveness</p>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Section -->
+<section id="reviews" class="reviews-section">
+  <h2 class="reviews-title">What Our Users Say</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Sarathi has transformed how we manage and retrieve information. The AI-powered insights are invaluable!"</p>
+      <p class="review-author">- Sarah Johnson, Tech Lead</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"The speed and accuracy are unmatched. Our team productivity has increased significantly."</p>
+      <p class="review-author">- Michael Chen, Product Manager</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Best investment we made for our knowledge management. Highly recommended!"</p>
+      <p class="review-author">- Emma Rodriguez, Operations Director</p>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">⭐⭐⭐⭐⭐</div>
+      <p class="review-text">"Seamless integration and exceptional support. Sarathi exceeded all our expectations."</p>
+      <p class="review-author">- David Park, CEO</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3 class="contact-title">Get in Touch</h3>
+      <div class="info-item">
+        <p class="info-label">Email</p>
+        <p class="info-value">contact4sarathi.com</p>
+      </div>
+      <div class="info-item">
+        <p class="info-label">Phone</p>
+        <p class="info-value">+1 (555) 123-4567</p>
+      </div>
+      <div class="info-item">
+        <p class="info-label">Address</p>
+        <p class="info-value">123 Innovation Drive, Tech City, TC 12345</p>
+      </div>
+    </div>
+    <form class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Your Name" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Your Email" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Your Message" class="form-textarea" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section">
+      <h4 class="footer-title">Sarathi</h4>
+      <p class="footer-description">Your RAG-Based Intelligence Platform</p>
+    </div>
+    <div class="footer-section">
+      <h4 class="footer-title">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#chat">Chat</a></li>
+        <li><a href="#blobs">Knowledge Hub</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4 class="footer-title">Legal</h4>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Sarathi Intelligence Platform. All rights reserved.</p>
+  </div>
+</footer>

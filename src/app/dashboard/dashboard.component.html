@@ -1,0 +1,117 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="dashboard-header-content">
+      <div class="dashboard-logo">
+        <span class="logo-icon">S</span>
+        <span class="logo-text">Sarathi</span>
+      </div>
+      <div class="dashboard-user-info">
+        <span class="user-email">{{ userEmail }}</span>
+        <button (click)="logout()" class="logout-btn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <aside class="dashboard-sidebar">
+      <nav class="sidebar-nav">
+        <h3 class="sidebar-title">Menu</h3>
+        <ul class="nav-list">
+          <li><a href="#" (click)="$event.preventDefault(); setActiveMenu('dashboard')" class="nav-link" [class.active]="activeMenu === 'dashboard'">Dashboard</a></li>
+          <li><a href="#" (click)="$event.preventDefault(); setActiveMenu('knowledge')" class="nav-link" [class.active]="activeMenu === 'knowledge'">Knowledge Base</a></li>
+          <li><a href="#" (click)="$event.preventDefault(); setActiveMenu('chat')" class="nav-link" [class.active]="activeMenu === 'chat'">💬 Chat</a></li>
+          <li><a href="#" (click)="$event.preventDefault(); setActiveMenu('analytics')" class="nav-link" [class.active]="activeMenu === 'analytics'">Analytics</a></li>
+          <li><a href="#" (click)="$event.preventDefault(); setActiveMenu('settings')" class="nav-link" [class.active]="activeMenu === 'settings'">Settings</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section class="dashboard-content" [class.with-chat]="activeMenu === 'chat'">
+      <div *ngIf="activeMenu === 'dashboard'" class="dashboard-view">
+        <div class="welcome-section">
+          <h1 class="welcome-title">Welcome to Sarathi Dashboard</h1>
+          <p class="welcome-subtitle">Your RAG-Based Intelligence Platform</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">📊 Statistics</h3>
+            </div>
+            <div class="card-body">
+              <div class="stat-item">
+                <span class="stat-label">Total Queries</span>
+                <span class="stat-value">1,245</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Documents Indexed</span>
+                <span class="stat-value">428</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Average Response Time</span>
+                <span class="stat-value">245ms</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">🔍 Recent Queries</h3>
+            </div>
+            <div class="card-body">
+              <ul class="recent-list">
+                <li class="recent-item">
+                  <span>What is RAG architecture?</span>
+                  <span class="time">2 hours ago</span>
+                </li>
+                <li class="recent-item">
+                  <span>How to index documents?</span>
+                  <span class="time">5 hours ago</span>
+                </li>
+                <li class="recent-item">
+                  <span>Integration with APIs</span>
+                  <span class="time">1 day ago</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">⚡ Quick Actions</h3>
+            </div>
+            <div class="card-body">
+              <button class="action-btn" (click)="setActiveMenu('chat')">Start New Chat</button>
+              <button class="action-btn">Upload Documents</button>
+              <button class="action-btn">View Analytics</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">📈 Activity</h3>
+            </div>
+            <div class="card-body">
+              <div class="activity-chart">
+                <div class="chart-bar" style="height: 60%"></div>
+                <div class="chart-bar" style="height: 75%"></div>
+                <div class="chart-bar" style="height: 45%"></div>
+                <div class="chart-bar" style="height: 90%"></div>
+                <div class="chart-bar" style="height: 70%"></div>
+                <div class="chart-bar" style="height: 85%"></div>
+                <div class="chart-bar" style="height: 55%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat View - Side by side -->
+      <div *ngIf="activeMenu === 'chat'" class="chat-view">
+        <app-chat></app-chat>
+      </div>
+
+      <!-- Placeholder for other views -->
+      <div *ngIf="activeMenu !== 'dashboard' && activeMenu !== 'chat'" class="placeholder-section">
+        <h2>{{ activeMenu | titlecase }} Section</h2>
+        <p>Coming soon...</p>
