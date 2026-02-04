@@ -1,0 +1,108 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+build/
+*.js.map
+*.d.ts.map
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+lerna-debug.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Angular
+/.angular/
+.angular/cache/
+angular.json.bak
+*.ngsummary.json
+*.ngfactory.js
+
+# Testing
+/coverage
+/test-results
+karma.conf.js.bak
+testem.log
+*.lcov
+.nyc_output/
+
+# Miscellaneous
+.sass-cache/
+/connect.lock
+/libpeerconnection.log
+typings/
+*.log
+.env
+.env.local
+.env.*.local
+
+# OS specific files
+.DS_Store
+Thumbs.db
+.windows-build-tools
+ehthumbs.db
+Desktop.ini
+
+# IDE specific
+*.sublime-project
+*.sublime-workspace
+*.tern-port
+.vscode-test
+.nvmrc.swp
+.prettierignore
+.eslintignore
+
+# Build artifacts
+*.tar.gz
+*.zip
+dist-backup/
+build-info.json
+
+# Dependencies
+.pnp
+.pnp.js
+
+# Optional npm cache
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+tmp/
+temp/
+
+# System temporary files
+$RECYCLE.BIN/
+*.lnk
