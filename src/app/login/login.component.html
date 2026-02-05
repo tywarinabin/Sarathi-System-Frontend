@@ -67,14 +67,17 @@
 
       <!-- Remember Me -->
       <div class="checkbox-group">
-        <input
-          type="checkbox"
-          id="rememberMe"
-          formControlName="rememberMe"
-          class="checkbox-input"
-          aria-label="Remember me"
-        />
-        <label for="rememberMe" class="checkbox-label">Remember me</label>
+        <label for="rememberMe" class="checkbox-label">
+          Remember Me
+          <input
+            type="checkbox"
+            id="rememberMe"
+            formControlName="rememberMe"
+            class="checkbox-input"
+            aria-label="Remember me"
+          />
+          <span class="checkmark"></span>
+        </label>
       </div>
 
       <!-- Submit Button -->
@@ -85,7 +88,7 @@
         [attr.aria-busy]="isSubmitting"
       >
         <span *ngIf="!isSubmitting">Sign In</span>
-        <span *ngIf="isSubmitting">
+        <span *ngIf="isSubmitting" class="submitting-state">
           <span class="spinner"></span> Signing in...
         </span>
       </button>
