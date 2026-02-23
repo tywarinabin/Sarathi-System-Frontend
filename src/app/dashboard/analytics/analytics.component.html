@@ -1,0 +1,62 @@
+<div class="analytics-container">
+  <div class="page-header">
+    <h1 class="page-title">Analytics & Insights</h1>
+    <p class="page-subtitle">Track your usage patterns and performance metrics</p>
+  </div>
+
+  <!-- Key Metrics -->
+  <div class="metrics-grid">
+    <div *ngFor="let metric of metrics" class="metric-card">
+      <div class="metric-header">
+        <span class="metric-title">{{ metric.label }}</span>
+        <span class="metric-trend" [class]="metric.trend">
+          {{ metric.trend === 'up' ? '↑' : '↓' }} {{ metric.change }}
+        </span>
+      </div>
+      <div class="metric-value">{{ metric.value }}</div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-grid">
+    <!-- Weekly Usage Chart -->
+    <div class="card">
+      <div class="card-header">
+        <app-icon name="analytics" [size]="20"></app-icon>
+        <h3 class="card-title">Weekly Activity</h3>
+      </div>
+      <div class="card-body chart-body">
+        <div class="chart-container">
+          <div *ngFor="let data of usageByTime" class="chart-bar-wrapper">
+            <div class="chart-bar-container">
+              <div class="chart-bar" [style.height.%]="(data.queries / 280) * 100"></div>
+            </div>
+            <span class="chart-label">{{ data.time }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Queries -->
+    <div class="card">
+      <div class="card-header">
+        <app-icon name="bookmark" [size]="20"></app-icon>
+        <h3 class="card-title">Top Queries</h3>
+      </div>
+      <div class="card-body">
+        <div class="top-queries-list">
+          <div *ngFor="let item of topQueries; let i = index" class="query-item">
+            <div class="query-rank">{{ i + 1 }}</div>
+            <div class="query-info">
+              <p class="query-text">{{ item.query }}</p>
+              <div class="query-meta">
+                <span class="query-count">{{ item.count }} queries</span>
+                <span class="query-rating">★ {{ item.rating }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

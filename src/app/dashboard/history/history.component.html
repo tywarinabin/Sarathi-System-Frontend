@@ -1,0 +1,71 @@
+<div class="history-container">
+  <div class="page-header">
+    <h1 class="page-title">Chat History</h1>
+    <p class="page-subtitle">View and manage your previous conversations</p>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-box">
+      <app-icon name="search" [size]="20"></app-icon>
+      <input
+        type="text"
+        placeholder="Search conversations..."
+        [(ngModel)]="searchQuery"
+        (input)="searchHistory()"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- History List -->
+  <div class="history-list">
+    <div *ngIf="filteredHistories.length > 0; else emptyState">
+      <div *ngFor="let item of filteredHistories" class="history-item">
+        <div class="history-icon">
+          <app-icon name="chat" [size]="20"></app-icon>
+        </div>
+        <div class="history-content">
+          <div class="history-header">
+            <h4 class="history-title">{{ item.title }}</h4>
+            <div class="history-meta-top">
+              <span class="history-date">{{ item.date }} at {{ item.time }}</span>
+            </div>
+          </div>
+          <p class="history-query">{{ item.query }}</p>
+          <div class="history-footer">
+            <div class="history-stats">
+              <span class="stat">
+                <app-icon name="chat" [size]="14"></app-icon>
+                {{ item.messages }} messages
+              </span>
+              <span class="stat">
+                <span class="star">★</span>
+                {{ item.rating }} rating
+              </span>
+            </div>
+            <div class="history-actions">
+              <button class="action-btn" title="View details">
+                <app-icon name="eye" [size]="18"></app-icon>
+              </button>
+              <button class="action-btn" title="Delete" (click)="deleteHistory(item.id)">
+                <app-icon name="trash" [size]="18"></app-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty-state">
+        <div class="empty-icon">
+          <app-icon name="history" [size]="48"></app-icon>
+        </div>
+        <h3>No History Found</h3>
+        <p *ngIf="searchQuery">No conversations match your search. Try different keywords.</p>
+        <p *ngIf="!searchQuery">Your chat history will appear here after you start conversations.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

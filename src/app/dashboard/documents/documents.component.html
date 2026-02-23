@@ -1,0 +1,79 @@
+<div class="documents-container">
+  <div class="page-header">
+    <div class="header-content">
+      <div>
+        <h1 class="page-title">Documents</h1>
+        <p class="page-subtitle">Manage your knowledge base documents</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Upload Section -->
+  <div class="upload-section card">
+    <div class="upload-icon">
+      <app-icon name="upload" [size]="32"></app-icon>
+    </div>
+    <div class="upload-content">
+      <h3 class="upload-title">Upload Documents</h3>
+      <p class="upload-subtitle">Drag and drop your files or click to browse</p>
+    </div>
+    <button class="upload-btn" (click)="browseFiles()">
+      <app-icon name="plus" [size]="18"></app-icon>
+      Browse Files
+    </button>
+    <input
+      #fileInput
+      type="file"
+      multiple
+      (change)="onFileSelected($event)"
+      accept=".pdf,.doc,.docx,.xlsx,.txt"
+      style="display: none"
+    />
+  </div>
+
+  <!-- Documents List -->
+  <div class="documents-section">
+    <h2 class="section-title">Your Documents ({{ documents.length }})</h2>
+
+    <div class="documents-grid">
+      <div *ngFor="let doc of documents" class="document-card">
+        <div class="document-header">
+          <div class="document-icon">
+            <app-icon name="documents" [size]="24"></app-icon>
+          </div>
+          <button class="doc-menu-btn" title="Delete">
+            <app-icon name="trash" [size]="18" (click)="deleteDocument(doc)"></app-icon>
+          </button>
+        </div>
+        <div class="document-body">
+          <h4 class="document-name">{{ doc.name }}</h4>
+          <div class="document-meta">
+            <span class="doc-size">
+              <app-icon name="documents" [size]="14"></app-icon>
+              {{ doc.size }}
+            </span>
+            <span class="doc-date">{{ doc.date }}</span>
+          </div>
+        </div>
+        <div class="document-actions">
+          <button class="action-btn">
+            <app-icon name="download" [size]="18"></app-icon>
+            Download
+          </button>
+          <button class="action-btn">
+            <app-icon name="eye" [size]="18"></app-icon>
+            Preview
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="documents.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <app-icon name="documents" [size]="48"></app-icon>
+      </div>
+      <h3>No Documents Yet</h3>
+      <p>Upload your first document to get started</p>
+    </div>
+  </div>
+</div>

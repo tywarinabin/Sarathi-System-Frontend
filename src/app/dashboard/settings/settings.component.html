@@ -1,0 +1,77 @@
+<div class="settings-container">
+  <div class="page-header">
+    <h1 class="page-title">Settings</h1>
+    <p class="page-subtitle">Manage your preferences and account settings</p>
+  </div>
+
+  <div class="settings-grid">
+    <!-- Preferences -->
+    <div class="card preferences-card">
+      <div class="card-header">
+        <app-icon name="settings" [size]="20"></app-icon>
+        <h3 class="card-title">Preferences</h3>
+      </div>
+      <div class="card-body">
+        <div *ngFor="let group of preferences" class="preference-group">
+          <h4 class="group-title">{{ group.group }}</h4>
+          <div class="preference-items">
+            <div *ngFor="let item of group.items" class="preference-item">
+              <div class="preference-info">
+                <label class="preference-label">{{ item.label }}</label>
+                <p class="preference-description">{{ item.description }}</p>
+              </div>
+              <div class="toggle-switch">
+                <input
+                  type="checkbox"
+                  [id]="item.key"
+                  [(ngModel)]="settings[item.key as keyof typeof settings]"
+                  [disabled]="item.key === 'darkMode'"
+                />
+                <label [for]="item.key" class="toggle-label"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account -->
+    <div class="card account-card">
+      <div class="card-header">
+        <app-icon name="profile" [size]="20"></app-icon>
+        <h3 class="card-title">Account</h3>
+      </div>
+      <div class="card-body">
+        <div class="info-item">
+          <span class="info-label">Account Status</span>
+          <span class="info-value">
+            <span class="badge active">Active</span>
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Member Since</span>
+          <span class="info-value">February 2024</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Plan</span>
+          <span class="info-value">Professional</span>
+        </div>
+        <button class="danger-btn">
+          <app-icon name="logout" [size]="18"></app-icon>
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="btn-primary" (click)="saveSettings()">
+      <app-icon name="check" [size]="18"></app-icon>
+      Save Settings
+    </button>
+    <button class="btn-secondary" (click)="resetSettings()">
+      Reset to Default
+    </button>
+  </div>
+</div>

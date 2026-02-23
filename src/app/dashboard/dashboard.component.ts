@@ -1,67 +1,62 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { ChatComponent } from '../chat/chat.component';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { IconComponent } from '../shared/icons/icon.component';
+import { FormsModule } from '@angular/forms';
 
-/**
- * Dashboard Component
- * Shows authenticated user content and dashboard with integrated chat
- * Only accessible to authenticated users
- */
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, ChatComponent],
+  imports: [CommonModule, RouterLink, RouterOutlet, IconComponent, FormsModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  @ViewChild('sidebarToggle') sidebarToggle!: ElementRef;
+
   userEmail = '';
-  activeMenu = 'dashboard';
+  isSidebarOpen = true;
   private destroy$ = new Subject<void>();
+
+  menuItems = [
+    { label: 'Overview', route: '/dashboard/overview', icon: 'dashboard' },
+    { label: 'Chat', route: '/dashboard/chat', icon: 'chat' },
+    { label: 'Documents', route: '/dashboard/documents', icon: 'documents' },
+    { label: 'History', route: '/dashboard/history', icon: 'history' },
+    { label: 'Analytics', route: '/dashboard/analytics', icon: 'analytics' },
+    { label: 'Settings', route: '/dashboard/settings', icon: 'settings' }
+  ];
 
   constructor(
     private router: Router,
     private authService: AuthService
   ) {}
 
-  /**
-   * Angular lifecycle hook - initialize dashboard
-   */
   ngOnInit(): void {
-    // Get user email from auth service
     const email = this.authService.getEmail();
     if (email) {
       this.userEmail = email;
     }
   }
 
-  /**
-   * Angular lifecycle hook - cleanup subscriptions
-   */
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  /**
-   * Set active menu item
-   */
-  setActiveMenu(menu: string): void {
-    this.activeMenu = menu;
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
-  /**
-   * Logout user and redirect to landing page
-   */
-  logout(): void {
-    // Clear all auth data using auth service
-    this.authService.logout();
+  closeSidebar(): void {
+    this.isSidebarOpen = false;
+  }
 
-    // Redirect to landing page
+  logout(): void {
+    this.authService.logout();
     this.router.navigate(['/']);
   }
 }
